@@ -29,4 +29,25 @@ def getname(file):
     return file.split("\\")[-1]
 
 
-del_same("D:\\Org_Mod", "C:\\Users\\hooda\\Music\\")
+def acount(folder):
+    files = getnames(flatten.listfiles(folder))
+    artists = {}
+    for file in files:
+        artist = file.split("-")[0]
+        if not artist in artists.keys():
+            artists[artist] = 1
+        else:
+            artists[artist] += 1
+    artist_counts = []
+    for artist in artists.keys():
+        artist_counts += [[artist, artists[artist]]]
+    final = sorted(artist_counts, key=mykey)
+    for entry in final:
+        print(entry)
+    
+    
+def mykey(pair):
+    return -1 * pair[1]
+
+
+acount("C:\\Users\\hooda\\Music\\")
